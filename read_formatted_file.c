@@ -1,6 +1,11 @@
 #include <cs50.h>
 #include <stdio.h>
 
+#define MAX_ROWS 10
+#define ROW_TO_READ_FIRST 3
+#define ROW_TO_READ_SECOND 10
+
+
 int main(void)
 {
 	// Create file pointer
@@ -17,18 +22,20 @@ int main(void)
 
 	// Create character arrays; they are equal to strings
 	// One character array can have 20 characters
-	char file_read_string1[20];
-	char file_read_string2[20];	
+	char file_read_string[MAX_ROWS][20];
 
 	// Read each row from file and save them into separate character arrays
-	fscanf(file_pointer, "%s %s", file_read_string1, file_read_string2);
+	for(int row = 0; row < MAX_ROWS; row++)
+	{
+		fscanf(file_pointer, "%s", file_read_string[row]);
+	}
 
 	// Close the file and remove it from the memory
 	fclose(file_pointer);
 
 	// Print each character array
-	printf("%s\n", file_read_string1);
-	printf("%s\n", file_read_string2);
+	printf("%s\n", file_read_string[ROW_TO_READ_FIRST - 1]);
+	printf("%s\n", file_read_string[ROW_TO_READ_SECOND - 1]);
 
 	return 0;
 }
